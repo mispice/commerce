@@ -1,0 +1,12 @@
+{% extends "auctions/layout.html" %}
+{% block body %}
+    {% if notification %}
+        <div class="alert alert-success" role="alert">
+            {{notification}}
+        </div>
+    {% else %}
+        <div class="alert alert-secondary" role="alert">
+            No Notification sent
+        </div>
+    {% endif %}
+{% endblock %}

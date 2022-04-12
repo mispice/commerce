@@ -1,0 +1,31 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2 style="text-align: center;">Your Listings</h2>
+    {% for listing in listings %}
+    {% if listing.active == True %}
+    <div class="d-flex flex-column" style="border: darkgray solid 0.5px; border-radius:1rem; padding: 20px; margin-bottom: 20px;">
+        <div style="color:rgb(131, 130, 130)"><h3>{{listing.title}}<h3></div>
+        <div><img src="{{listing.Product_Image}}" width="300px"></div>
+        <div>Starting Bid: <strong style="color: brown;">${{listing.starting_bid}}</strong></div>
+        <div>Category: <strong style="color: blueviolet;">{{listing.category}}</strong></div>
+        <div>Date Created: {{listing.date_created}}</div>
+        <div>
+            <label>Description:</label>
+            <ul>
+                <li>{{listing.description}}</li>
+            </ul>
+        </div>
+        <div class="text-center">
+            <form action="{% url 'close_bid' listing.id %}" method="post">
+                {% csrf_token %}
+                <!-- <a class="btn btn-secondary " style="width: 200px;" href="{% url 'listing_page' listing.id %}">View Details</a> -->
+                <button class="btn btn-warning" name="close_bid" type="submit" style="width: 200px;">Close Bid</button>
+            </form>
+        </div>
+        
+        
+    </div>
+    {% endif %}
+    {% endfor %}
+{% endblock %}

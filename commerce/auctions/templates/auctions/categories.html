@@ -1,0 +1,11 @@
+{% extends "auctions/layout.html"  %}
+{% block body %}
+    {% for category in categories %}
+        <ul class="d-flex flex-row">
+            <form action="{% url 'categorical_listing' %}" method="post">
+                {% csrf_token %}
+                <button name="categorybutton" value="{{category.category}}" class="btn btn-primary">{{category.category}}</button>
+            </form>
+        </ul>
+    {% endfor %}
+{% endblock %}

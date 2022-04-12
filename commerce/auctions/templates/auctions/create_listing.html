@@ -1,0 +1,43 @@
+{% extends "auctions/layout.html" %}
+{% block body %}
+    {% if message %}
+        <div class="alert alert-success" role="alert">
+            {{message}}
+        </div>
+    {% endif %}
+
+<form action="{% url 'create_listing' %}" method="post" class="md-form">
+{% csrf_token %}
+<div class="mb-3">
+    <label class="pr-3">Title</label>
+    <input type="text" name="title" placeholder="Title" class="form-control border border-primary">
+</div>
+
+<div class="mb-3">
+    <label class="pr-3">Description</label>
+    <textarea name="description" placeholder="Description" cols="50" rows="10" class="form-control border-primary"></textarea>
+</div>
+
+<div class="mb-3">
+    <label class="pr-3">Starting Bid</label>
+    <input  class="form-control border-primary" type="text" name="starting_bid" placeholder="Starting Bid">
+</div>
+
+<div class="mb-3">
+    <label class="pr-3">Images</label>
+    <input class="form-control border-primary" type="text" name="product_images" placeholder="Image URL">
+</div>
+
+<div class="mb-3">
+    <label class="pr-3">Category</label>
+    <input  class="form-control border-primary" type="text" name="category" placeholder="Category">
+</div>
+<div class="pr-3">
+    <button class="btn btn-primary">Create</button>
+</div>
+
+
+
+
+</form>
+{% endblock %}

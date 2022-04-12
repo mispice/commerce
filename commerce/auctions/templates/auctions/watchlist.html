@@ -1,0 +1,33 @@
+{% extends "auctions/layout.html" %}
+{% block body %}
+<div>
+    {% for message in messages %}
+    {% if message.tags == 'success' %}
+        <div class="messages alert alert-success" role="alert"> {{ message }} </div>
+    {% endif %}
+    {% endfor %}
+</div>
+<h2 style="text-align: center;">Watch List</h2>
+    {% for list in watch_list %}
+    <div class="d-flex flex-column" style="border: darkgray 1px; border-radius:1rem; padding: 20px; margin-bottom: 20px;">
+        <div style="color:rgb(131, 130, 130)"><h3>{{list.auctionlisting.title}}<h3></div>
+        <div><img src="{{list.auctionlisting.Product_Image}}" width="300px"></div>
+        <div>Starting Bid: <strong style="color: brown;">${{list.auctionlisting.starting_bid}}</strong></div>
+        <div>Category: <strong style="color: blueviolet;">{{list.auctionlisting.category}}</strong></div>
+        <div>Date Created: {{list.auctionlisting.date_created}}</div>
+        <div>
+            <label>Description:</label>
+            <ul>
+                <li>{{list.auctionlisting.description}}</li>
+            </ul>
+        </div>
+        <div>
+            <a class="btn btn-warning" href="{% url 'listing_page' list.auctionlisting.id %}">View listing</a>
+            <a class="btn btn-danger" href="{% url 'remove_watchlist' list.id %}">Remove from watchlist</a>
+        </div>
+    </div>
+    {% endfor %}
+        <div>
+            <a href="{% url 'index' %} " class="btn btn-primary mb-3">Back to Main Page</a>
+        </div> 
+{% endblock %}
